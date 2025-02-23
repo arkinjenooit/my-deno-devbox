@@ -9,7 +9,7 @@ ENV SSHD_CONFIG_ADDITIONAL=""
 # Install OpenSSH server, clean up, create directories, set permissions, and configure SSH
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get install -y iproute2 iputils-ping openssh-server telnet sudo micro htop neofetch mc \
+    && apt-get install -y iproute2 iputils-ping openssh-server telnet sudo micro htop neofetch mc curl \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir -p /run/sshd \
@@ -20,10 +20,9 @@ RUN apt-get update \
     # && mkdir -p /home/"$SSH_USERNAME"/.ssh \
     # && chown "$SSH_USERNAME":"$SSH_USERNAME" /home/"$SSH_USERNAME"/.ssh \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
-    && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
+    && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \ 
     && deluser --remove-home ubuntu
 
-RUN  curl -fsSL https://deno.land/install.sh | sh
 
 # Copy the script to configure the user's password and authorized keys
 COPY configure-ssh-user.sh /usr/local/bin/
