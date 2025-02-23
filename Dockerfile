@@ -22,7 +22,9 @@ RUN apt-get update \
     && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config \
     && deluser --remove-home ubuntu
-    
+
+RUN  curl -fsSL https://deno.land/install.sh | sh
+
 # Copy the script to configure the user's password and authorized keys
 COPY configure-ssh-user.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/configure-ssh-user.sh

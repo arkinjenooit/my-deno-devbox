@@ -1,8 +1,8 @@
 
 services:
-  ubuntu-sshd:
-    container_name: ggmm-sshd
-    #image: my-ubuntu-sshd:latest
+  ggmm-deno-devbox:
+    container_name: ggmm-deno-devbox 
+    image: ggmm-deno-devbox:latest
     build: .
     ports:
       - "${HOST_PORT}:22"

@@ -1,6 +1,6 @@
 echo "removing containers ..."
-docker container rm ggmm-sshd 
+docker container rm ggmm-deno-devbox 
 echo "removing images ..."
-docker image rm ubuntu-sshd-ubuntu-sshd
+docker image rm ggmm-deno-devbox
 echo "removing ssh keys ..."
 ssh-keygen -R [localhost]:4422
